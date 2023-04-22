@@ -42,5 +42,6 @@ def add_time(start_time, duration, starting_day=None):
     else:
         day_of_week_str = ''
 
-    full_str = f'{total_minutes}:{total_minutes:02d} {am_pm}{day_of_week_str}{days_later_str}'
-    return full_str
+    new_time = f'{total_hours}:{total_minutes:02d} {am_pm}{day_of_week_str}{days_later_str}'
+    return new_time
+
