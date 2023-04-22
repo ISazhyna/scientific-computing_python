@@ -9,13 +9,13 @@ def add_time(start_time, duration, starting_day=None):
     # Total time
     total_minutes = start_time_minutes + duration_minutes
     total_hours = start_time_hours + duration_hours
-    if total_minutes>60:
+    if total_minutes > 60:
         total_minutes = total_minutes % 60
         total_hours += 1
-    if am_pm == "PM":
-        total_hours += 12
 
     # Days later
+    if am_pm == "PM":
+        total_hours += 12
     days_later = total_hours // 24
     if days_later == 1:
         days_later_str = f' (next day)'
@@ -25,12 +25,17 @@ def add_time(start_time, duration, starting_day=None):
         days_later_str = ''
 
     # Define hours in AM PM period
+    print(total_hours/24)
     total_hours = total_hours % 24
-    if total_hours > 12:
-        total_hours = total_hours % 12
-        am_pm = "PM"
-    else:
+    print(total_hours)
+    if total_hours>=0 and total_hours<12:
         am_pm = "AM"
+        if total_hours == 0:
+            total_hours = 12
+    else:
+        am_pm = "PM"
+        if total_hours != 12:
+            total_hours -= 12
 
     # Add day of week if given
     if starting_day:
@@ -42,6 +47,6 @@ def add_time(start_time, duration, starting_day=None):
     else:
         day_of_week_str = ''
 
-    new_time = f'{total_hours}:{total_minutes:02d} {am_pm}{day_of_week_str}{days_later_str}'
-    return new_time
+    full_str=f'{total_hours}:{total_minutes:02d} {am_pm}{day_of_week_str}{days_later_str}'
+    return full_str
 
