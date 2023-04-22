@@ -15,6 +15,15 @@ def add_time(start_time, duration, starting_day=None):
     if am_pm == "PM":
         total_hours += 12
 
-    return (total_hours, total_minutes)
+    # Days later
+    days_later = total_hours // 24
+    if days_later == 1:
+        days_later_str = '(next day)'
+    elif days_later > 1:
+        days_later_str = f'({days_later} days later)'
+    else:
+        days_later_str = ''
+
+    return (total_hours, total_minutes, days_later_str)
 
 print(add_time("3:30 PM", "33:35"))
